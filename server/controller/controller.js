@@ -6,10 +6,6 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "Content can not be empty" });
     return;
   }
-  if (req.body.phone.length != 10 || isNaN(req.body.phone.length)) {
-    res.status(400).send({ message: "invalid number" });
-    return;
-  }
 
   const user = new Userdb({
     name: req.body.name,
