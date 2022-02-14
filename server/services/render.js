@@ -3,9 +3,7 @@ const axios = require("axios");
 exports.homeRoutes = (req, res) => {
   // Make a get request to /api/users
   axios
-    .get(
-      "http://localhost:3000https://phone-book-app-heroku.herokuapp.com/api/users"
-    )
+    .get("https://phone-book-app-heroku.herokuapp.com/api/users")
     .then(function (response) {
       res.render("index", { users: response.data });
     })
