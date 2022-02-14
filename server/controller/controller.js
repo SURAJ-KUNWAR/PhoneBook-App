@@ -6,6 +6,19 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "Content can not be empty" });
     return;
   }
+  if (req.body.phone.length != 10 || isNaN(req.body.phone.length)) {
+    res.status(400).send({ message: "invalid number" });
+    return;
+  }
+  Userdb.findOne({ email: req.body.email }, function (err, user1) {
+    if (err) {
+      res.send("some error");
+    }
+
+    if (user1) {
+      res.send("User already exists .Try with a different Emai Id 😞😔");
+    }
+  });
   const user = new Userdb({
     name: req.body.name,
     email: req.body.email,
