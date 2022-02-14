@@ -10,30 +10,21 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "invalid number" });
     return;
   }
-  Userdb.findOne({ email: req.body.email }, function (err, user1) {
-    if (err) {
-      return res.send("some error");
-    }
 
-    if (user1) {
-      return res.send("User already exists .Try with a different Emai Id 😞😔");
-    } else {
-      const user = new Userdb({
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone,
-      });
-      user
-        .save(user)
-        .then((data) => {
-          res.redirect("/add-user");
-        })
-        .catch((err) => {
-          res.status(500).send;
-          ({ message: err.message || "Some error occurred" });
-        });
-    }
+  const user = new Userdb({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
   });
+  user
+    .save(user)
+    .then((data) => {
+      res.redirect("/add-user");
+    })
+    .catch((err) => {
+      res.status(500).send;
+      ({ message: err.message || "Some error occurred" });
+    });
 };
 
 //return user
